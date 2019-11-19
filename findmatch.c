@@ -9,7 +9,15 @@ int main(void)
 
 int findmatch(char *p, char*t)
 {
-    char *pp, *tt;
-    *pp == *p;
+    char plen;
+    char *pp, *tp;
+    
+    pp = p;
+    tp = t;
+    while (*pp++)
+        ;
+    plen = pp-p;
+    for ( ; t < plen)
+        ;
     
 }
