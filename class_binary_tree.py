@@ -38,7 +38,23 @@ class TreeNode():
             d += 1
             p = p.parent
         return d
-    
+      
+    def tree_depth(self):
+        if self.left:
+            l = self.left.tree_depth()
+        else:
+            l = 0
+        if self.right:
+            r = self.right.tree_depth()
+        else:
+            r = 0
+        if l > r:
+            return l + 1
+        else:
+            return r + 1
+
+
+
     def print_depth(self, d):
         c = self
         if c:
@@ -48,7 +64,40 @@ class TreeNode():
             if c.left:
                 c.left.print_depth(d)
             if c.right:
-                c.right.print_depth(d)    
+                c.right.print_depth(d)
+
+    def min(self):
+        if not self.left:
+            return self
+        return self.left.min()
+
+    def max(self):
+        if not self.right:
+            return self
+        return self.right.max()
+    
+    def delete(self, value):
+        if not self:
+            return self
+        if value < self.value:
+            self.left = self.left.delete(value)
+        elif value > self.value:
+            self.right = self.right.delete(value)
+        else:
+            if not self.left:
+                temp = self.right
+                self = None
+                return temp
+            elif not self.right:
+                temp = self.left
+                self = None
+                return temp
+            temp = self.right.min()
+            self.value = temp.value
+            self.parent = temp.parent
+            self.right = self.right.delete(temp.value)
+        return self
+
             
 
 # Binary tree class
@@ -90,51 +139,24 @@ class Tree():
         self.root = TreeNode(value, p)
 
     def delete(self, value):
-        prev = None
-        c = self.root
-        while c:
-            if value == c.value:
-                if c.left and not c.right:
-                    return
-            elif value < c.value:
-                prev = c
-                c = c.left
-            else:
-                prev = c
-                c = c.right
+        self.root.delete(value)
 
     def show(self):
         if self.root:
             self.root.show()
 
     def min(self):
-        c = self.root
-        while c:
-            if c.left:
-                c = c.left
-            else:
-                return c
+       return self.root.min()
 
     def max(self):
-        c = self.root
-        while c:
-            if c.right:
-                c = c.right
-            else:
-                return c
+        return self.root.max()
 
     def tree_depth(self):
-        mind = self.min().depth()
-        maxd = self.max().depth()
-        if mind > maxd:
-            return mind
-        else:
-            return maxd
+        return self.root.tree_depth()
     
     def show_depth(self):
         i = 0
-        j = self.tree_depth() + 1
+        j = self.tree_depth()
         while i < j:
             self.root.print_depth(i)
             i += 1
-        
