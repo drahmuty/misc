@@ -6,14 +6,6 @@ class Node():
 class LinkedList():
     def __init__(self):
         self.head = None
-        
-    def array(self):
-        arr = []
-        c = self.head
-        while c:
-            arr.append(c.value)
-            c = c.next
-        print(arr)
             
     def search(self, value):
         c = self.head
@@ -40,3 +32,17 @@ class LinkedList():
                 return
             prev = c
             c = c.next
+
+    def show(self):
+        c = self.head
+        while c:
+            print(c.value)
+            c = c.next
+        
+    def array(self):
+        arr = []
+        c = self.head
+        while c:
+            arr.append(c.value)
+            c = c.next
+        print(arr)
