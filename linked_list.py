@@ -16,6 +16,8 @@ class LinkedList():
         return False            
 
     def insert(self, value):
+        if self.search(value):      # option to prevent duplicate entries 
+            return
         temp = self.head
         self.head = Node(value)
         self.head.next = temp
