@@ -11,7 +11,7 @@ class LinkedList():
         arr = []
         c = self.head
         while c:
-            out.append(c.value)
+            arr.append(c.value)
             c = c.next
         print(arr)
             
