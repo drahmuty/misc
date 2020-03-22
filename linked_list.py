@@ -33,10 +33,10 @@ class LinkedList():
         c = self.head
         while c:
             if c.value == value:
-                if prev == None:
-                    self.head = c.next
-                else:
+                if prev:
                     prev.next = c.next
+                else:
+                    self.head = c.next
                 return
             prev = c
             c = c.next
